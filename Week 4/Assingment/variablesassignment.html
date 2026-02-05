@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Very Epic and Amazing Variable Assingment</title>
+    <style>
+body { font-family: fantasy; padding: 10px; text-align: center; color:wheat; background-color: black;}
+button {font-family: fantasy; padding: 10px; text-align: center; color:wheat; background-color: black; border-color: wheat;}
+
+
+
+    </style>
+</head>
+<body>
+    <h1>
+        THE GREAT VARIABLES
+    </h1>
+    <caption>
+        By Lucan Furio
+    </caption>
+<br>
+
+<br>
+    <button id="button1" onclick="updateVariables1()" >Who else is there?</button> <!-- ChatGPT showed me how to make a button that updated variables.-->
+    <button id="button2" onclick="updateVariables2()" >Do math!</button>
+
+    <script type="application/javascript">
+
+let name = "Natalie";
+let number = 67
+let likes = "Lucan"
+
+window.onload = function() { // As well as a onload function
+    alert("Who is there? " + name);
+    alert("What is her favorite number? " + number);
+    alert("What does she like? " + likes);
+
+    alert( name + " likes " + likes + " and the number " + number );
+}
+function updateVariables1() {
+         let name = "Lucan";
+        let number = 888
+        let likes = "Natalie"    
+           
+            alert("Who is there? " + name);
+            alert("What is his favorite number? " + number);
+            alert("What does he like? " + likes);
+
+          
+            alert( name + " likes " + likes + " and the number " + number );}
+
+            function updateVariables2() {
+                let natalienumber = 67
+                let lucannumber = 888
+                alert("Lucan and Natalie's numbers added together are " + (lucannumber + natalienumber))
+            }
+    </script>
+
+</body>
+</html>
