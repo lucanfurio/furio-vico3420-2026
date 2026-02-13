@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body { font-family: fantasy; padding: 10px; text-align: center; color:rgb(0, 0, 0); background-color: orange;}
+        button {font-family: fantasy; padding: 10px; text-align: center; color:black; background-color: orange; border-color: black;}
+            </style>
+</head>
+<body>
+ 
+    <h1>Color Guessing Game</h1>
+    <button onclick="startGame()">Start Game</button>
+    
+    <script type="application/javascript">
+        function startGame() {
+            let lucancolor = prompt("What is my favorite color? (red, orange, black)");
+            let orangecolor = prompt("What color is a orange?");
+            let yourcolor = prompt("What is your favorite color?");
+      
+            if (lucancolor == "orange") {
+                alert("Orange is my favorite color!");
+            }
+
+            if (orangecolor == "orange") {
+                alert("Correct! Oranges are orange, who would've guessed!");
+            } else {
+                alert("Not quite! Oranges are orange (seriously?).");
+            }
+
+
+            if (yourcolor == "orange") {
+                alert("ME TOO");
+            }
+            else if (yourcolor == "yellow") {
+                alert("EW");
+            }
+            else {
+                alert("sure man whatever");
+            }
+
+
+            switch (lucancolor) {
+                case "red":
+                    alert("not really a fan");
+                    break;
+                case "black":
+                    alert("I do enjoy black");
+                    break;
+                case "orange":
+                    alert("orange still the best");
+                    break;
+                default:
+                    alert("no");
+            }
+      
+        }
+        </script>
+</body>
+</html>
