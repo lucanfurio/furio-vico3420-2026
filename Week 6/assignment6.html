@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lists and Loops</title>
+    <style>
+body { font-family: fantasy; padding: 10px; text-align: center; color:wheat; background-color: black;}
+#gallery img {
+            width: 200px;
+            height: 200px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        #menu a {
+            display: block;
+            
+            color: blue;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Random List (Sorted Alphabetically)</h2>
+        <div id="fruit"></div>
+
+
+            <h2>Thumbnail Gallery</h2>
+            <div id="gallery"></div>
+   
+            <section>
+                <h2>My websites</h2>
+                <div id="menu"></div>
+            </section>
+
+        <script>
+let myList = ["Banana", "Apple", "Cherry", "Mango", "Grape"];
+        myList.sort();
+
+        let listDiv = document.getElementById("fruit");
+
+        for (let i = 0; i < myList.length; i++) {
+            listDiv.innerHTML += myList[i] + "<br>";}
+
+            let imageArray = [
+            "https://upload.wikimedia.org/wikipedia/commons/a/a6/Pink_lady_and_cross_section.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/f/f6/Cherry_season_%2848216568227%29.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Grapes%2C_Rostov-on-Don%2C_Russia.jpg/3840px-Grapes%2C_Rostov-on-Don%2C_Russia.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/7/74/Mangos_-_single_and_halved.jpg"
+        ];
+
+        let galleryDiv = document.getElementById("gallery");
+
+
+        for (let imgSrc of imageArray) {
+            let img = document.createElement("img");
+            img.src = imgSrc;
+            img.alt = "Thumbnail";
+
+            img.onclick = () => window.open(imgSrc);
+            galleryDiv.appendChild(img);
+        }
+
+        // chat gpt helped me create an image gallery that opens on click
+
+        let menuLinks = [
+            
+            ["Instagram", "https://www.instagram.com/lucan.media/"],
+            ["Portfolio", "https://lucanfurio.com/"],
+            ["72daychallenge", "https://www.instagram.com/redacted.fog/"]
+        ];
+
+        let menuDiv = document.getElementById("menu");
+
+       
+        for (let i = 0; i < menuLinks.length; i++) {
+            let link = document.createElement("a");
+            link.href = menuLinks[i][1];
+            link.textContent = menuLinks[i][0];
+            link.target = "_blank"; // Chatgpt also showed me how to open a link in a new tab
+            menuDiv.appendChild(link);
+        } 
+        </script>
+</body>
+</html>
