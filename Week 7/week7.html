@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+body { font-family: fantasy; padding: 10px; text-align: center; color:rgb(0, 0, 0); background-color: rgb(255, 255, 255);}
+        
+        .box {
+            background-color: lightblue;
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            border-radius: 8px;
+            cursor: pointer;
+            
+        }
+
+        .box:hover{
+            background-color: blanchedalmond;
+        }
+    </style>
+</head>
+<body>
+    <h1>Week 07 Assingment!</h1>
+    <div class="box" onclick="welcome()">
+        Click this box to see a welcome message!
+    </div>
+
+    <div class="box" onclick="greeting('Professor Moore')">
+        Click to Greet
+    </div>
+
+    <div class="box" onclick="calculateTotal(11, 11)">
+        Click to multiply 11 by 11
+    </div>
+
+    <p id="output"></p>
+
+    <footer>
+        Lucan Furio ©2026
+    </footer>
+
+    <script>
+
+        function welcome(   ){
+            alert("welcome to the website!")
+        }
+
+        function greeting(name) {
+            document.getElementById("output").innerHTML =
+                "Hello, " + name + "! Welcome to the site.";
+        }
+
+        function calculateTotal(num1, num2) {
+            let result = multiplyNumbers(num1, num2);
+            document.getElementById("output").innerHTML =
+                "The total is: " + result;
+        }
+
+
+        function multiplyNumbers(a, b) {
+            return a * b;
+        }
+    </script>
+</body>
+</html>
