@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Pub – Menu</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Josefin+Sans:wght@100;300;400&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .site-nav {
+      background: #ffffff;
+      border-bottom: 2px solid #0d0d0d;
+      padding: 0.4rem 2rem;
+    }
+
+    .nav-logo img {
+      height: 80px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-links a {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #0d0d0d;
+      text-decoration: none;
+      padding: 0 1rem;
+    }
+    .nav-links a:hover { color: #000000; font-weight: 700; }
+    .nav-links a.active { color: #000000; font-weight: 700; }
+
+    .nav-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border: 1.5px solid #0d0d0d;
+      border-radius: 50%;
+      color: #0d0d0d;
+      font-size: 0.9rem;
+      text-decoration: none;
+      margin-left: 0.35rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-social a:hover {
+      background: #0d0d0d;
+      color: #f2ede6;
+    }
+
+
+
+    /* ── ACCORDION / MENU ── */
+    .menu-section {
+      padding: 0;
+    }
+
+    .accordion-item {
+      border: none;
+      border-bottom: 2px solid #0d0d0d;
+      border-radius: 0 !important;
+    }
+    .accordion-item:first-of-type {
+      border-top: 2px solid #0d0d0d;
+    }
+
+    .accordion-button {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 500;
+      font-size: 1.3rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #0d0d0d;
+      background: #ffffff;
+      padding: 1.4rem 2rem;
+      box-shadow: none !important;
+    }
+    .accordion-button:not(.collapsed) {
+      color: #0d0d0d;
+      background: #ffffff;
+    }
+    .accordion-button::after {
+      display: none; /* hide default Bootstrap chevron */
+    }
+
+    /* Custom +/- indicator */
+    .accordion-button .acc-icon {
+      margin-left: auto;
+      font-size: 1.5rem;
+      font-weight: 300;
+      line-height: 1;
+      transition: transform 0.2s;
+    }
+    .accordion-button:not(.collapsed) .acc-icon::before {
+      content: '−';
+    }
+    .accordion-button.collapsed .acc-icon::before {
+      content: '+';
+    }
+
+    .accordion-body {
+      padding: 1rem 1rem 1.5rem;
+      background: #ffffff;
+      /* Items will go here */
+      min-height: 60px;
+    }
+
+/* Accordian Menu Items */
+
+    .menu-img {
+  max-width: 300px;
+}
+
+.menu-desc {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0.5rem 0;
+  font-weight: 200;
+}
+
+.menu-price {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+.menu-item {
+  min-height: 180px;
+}
+
+@font-face {
+  font-family: 'Blackletter';
+  src: url('jblack.ttf') format('truetype');
+}
+
+.menu-item-title {
+  font-family: 'Blackletter', serif;
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+  letter-spacing: 5%;
+}
+
+    /* ── FOOTER ── */
+    .site-footer {
+      width: 100%;
+      background-image: url('footer.png');
+      background-size: cover;
+      background-position: center;
+      padding: 3rem;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 5rem;
+    }
+    .footer-heading {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 350;
+      font-size: 1.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 0.6rem;
+    }
+    .footer-body {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #cccccc;
+    }
+    .footer-logo-col {
+      text-align: right;
+      margin-left: auto;
+    }
+    .footer-logo {
+      height: 120px;
+      width: auto;
+      margin-top: 20px;
+      margin-right: 20px;
+    }
+
+    @media (max-width: 767px) {
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-logo-col { text-align: left; }
+      .accordion-button { font-size: 1.1rem; padding: 1.2rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav navbar navbar-expand-md">
+    <div class="container-fluid px-0">
+
+      <a href="index.html" class="nav-logo">
+        <img src="Asset_1_4x_1.png" alt="The Pub – Since 1975, Athens, Ohio" />
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <div class="nav-links d-flex flex-column flex-md-row align-items-start align-items-md-center mx-auto py-2 py-md-0">
+          <a href="index.html">Home</a>
+          <a href="merch.html">Merch</a>
+          <a href="menu.html" class="active">Menu</a>
+          <a href="#">About Us</a>
+        </div>
+        <div class="nav-social d-flex align-items-center mt-2 mt-md-0 pb-2 pb-md-0">
+          <a href="#" aria-label="Cart"><i class="bi bi-cart3"></i></a>
+          <a href="#" aria-label="Email"><i class="bi bi-envelope"></i></a>
+          <a href="#" aria-label="X"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- MENU ACCORDION -->
+  <div class="menu-section">
+    <div class="accordion accordion-flush" id="menuAccordion">
+
+      <!-- NIBBLERS -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button"
+            data-bs-toggle="collapse" data-bs-target="#nibblers"
+            aria-expanded="false" aria-controls="nibblers">
+            Nibblers
+            <span class="acc-icon"></span>
+          </button>
+        </h2>
+        <div id="nibblers" class="accordion-collapse collapse" data-bs-parent="#menuAccordion">
+          <div class="accordion-body">
+            <div class="accordion-body">
+
+              <!-- ITEM 1 -->
+              <div class="menu-item row align-items-center mb-5">
+                <div class="col-md-6 text-center">
+                  <img src="wings.png" class="img-fluid menu-img" alt="Hot Wings">
+                </div>
+                <div class="col-md-6">
+                  <h3 class="menu-item-title">Hot Wings</h3>
+                  <p class="menu-desc">
+                    3 Sauces:<br>
+                    Original, Golden BBQ, Spicy Garlic
+                  </p>
+                  <p class="menu-price">
+                    Half Order $8.50 &nbsp;&nbsp; Full Order $14.95<br>
+                    Add Ranch or Bleu Cheese … .50
+                  </p>
+                </div>
+              </div>
+            
+              <!-- ITEM 2 -->
+              <div class="menu-item row align-items-center mb-5">
+                <div class="col-md-6 text-center">
+                  <img src="potato.png" class="img-fluid menu-img" alt="Pub Peels">
+                </div>
+                <div class="col-md-6">
+                  <h3 class="menu-item-title">Pub Peels</h3>
+                  <p class="menu-desc">
+                    Crisp, fried potato skins<br>
+                    topped with cheese, bacon
+                  </p>
+                  <p class="menu-price">
+                    Half Order $4.95 &nbsp;&nbsp; Full Order $7.95
+                  </p>
+                </div>
+              </div>
+            
+              <!-- ITEM 3 -->
+              <div class="menu-item row align-items-center">
+                <div class="col-md-6 text-center">
+                  <img src="nachos.png" class="img-fluid menu-img" alt="Cheese Nachos">
+                </div>
+                <div class="col-md-6">
+                  <h3 class="menu-item-title">Cheese Nachos</h3>
+                  <p class="menu-desc">
+                    Tortilla chips smothered with melted cheese,<br>
+                    mild peppers, and salsa
+                  </p>
+                  <p class="menu-price">
+                    Half Order $5.50 &nbsp;&nbsp; Full Order $8.50
+                  </p>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SANDWICHES -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button"
+            data-bs-toggle="collapse" data-bs-target="#sandwiches"
+            aria-expanded="false" aria-controls="sandwiches">
+            Sandwiches
+            <span class="acc-icon"></span>
+          </button>
+        </h2>
+        <div id="sandwiches" class="accordion-collapse collapse" data-bs-parent="#menuAccordion">
+          <div class="accordion-body">
+        
+             <!-- ITEM 1 -->
+             <div class="menu-item row align-items-center mb-5">
+              <div class="col-md-6 text-center">
+                <img src="blt.png" class="img-fluid menu-img" alt="BLT">
+              </div>
+              <div class="col-md-6">
+                <h3 class="menu-item-title">BLT</h3>
+                <p class="menu-desc">
+                  Bacon, lettuce, tomatoes, mayo on multi-grain toast
+                </p>
+                <p class="menu-price">
+                  $5.95
+                </p>
+              </div>
+            </div>
+          
+            <!-- ITEM 2 -->
+            <div class="menu-item row align-items-center mb-5">
+              <div class="col-md-6 text-center">
+                <img src="fish.png" class="img-fluid menu-img" alt="Fish Tail">
+              </div>
+              <div class="col-md-6">
+                <h3 class="menu-item-title">Fish Tail</h3>
+                <p class="menu-desc">
+                  Lightly breaded and deep fried cod fillet
+                </p>
+                <p class="menu-price">
+                  $5.95
+                </p>
+              </div>
+            </div>
+          
+            <!-- ITEM 3 -->
+            <div class="menu-item row align-items-center">
+              <div class="col-md-6 text-center">
+                <img src="chickensam.png" class="img-fluid menu-img" alt="Spicy Chicken Sandwich">
+              </div>
+              <div class="col-md-6">
+                <h3 class="menu-item-title">Spicy Chicken Sandwich</h3>
+                <p class="menu-desc">
+                  A lightly breaded and seasoned deep fried<br>
+                  chicken breast
+                </p>
+                <p class="menu-price">
+                  Half Order $5.50 &nbsp;&nbsp; Full Order $8.50
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- SALADS -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button"
+            data-bs-toggle="collapse" data-bs-target="#salads"
+            aria-expanded="false" aria-controls="salads">
+            Salads
+            <span class="acc-icon"></span>
+          </button>
+        </h2>
+        <div id="salads" class="accordion-collapse collapse" data-bs-parent="#menuAccordion">
+          <div class="accordion-body">
+           
+             <!-- ITEM 1 -->
+             <div class="menu-item row align-items-center mb-5">
+              <div class="col-md-6 text-center">
+                <img src="chickensalad.png" class="img-fluid menu-img" alt="Chicken Salad">
+              </div>
+              <div class="col-md-6">
+                <h3 class="menu-item-title">Chicken Salad</h3>
+                <p class="menu-desc">
+                  Marinated and grilled chicken breast (6 oz.) <br>served over salad greens with your<br>choice of dressing
+                </p>
+                <p class="menu-price">
+                  $10.95
+                </p>
+              </div>
+            </div>
+          
+            <!-- ITEM 2 -->
+            <div class="menu-item row align-items-center mb-5">
+              <div class="col-md-6 text-center">
+                <img src="chefsalad.png" class="img-fluid menu-img" alt="Chef Salad">
+              </div>
+              <div class="col-md-6">
+                <h3 class="menu-item-title">Chef Salad</h3>
+                <p class="menu-desc">
+                  Chopped turkey, ham, Colby, and Swiss <br> with lettuce, tomatoes, cukes, and croutons
+                </p>
+                <p class="menu-price">
+                  $9.95
+                </p>
+              </div>
+            </div>
+          
+            <!-- ITEM 3 -->
+            <div class="menu-item row align-items-center">
+              <div class="col-md-6 text-center">
+                <img src="tossedsalad.png" class="img-fluid menu-img" alt="Tossed Salad">
+              </div>
+              <div class="col-md-6">
+                <h3 class="menu-item-title">Tossed Salad</h3>
+                <p class="menu-desc">
+                  Lettuce, tomatoes, cukes, croutons, <br>and choice of dressing
+                </p>
+                <p class="menu-price">
+                  $4.50
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- BURGERS -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button"
+            data-bs-toggle="collapse" data-bs-target="#burgers"
+            aria-expanded="false" aria-controls="burgers">
+            Burgers
+            <span class="acc-icon"></span>
+          </button>
+        </h2>
+        <div id="burgers" class="accordion-collapse collapse" data-bs-parent="#menuAccordion">
+          <div class="accordion-body">
+          
+
+             <!-- ITEM 1 -->
+             <div class="menu-item row align-items-center mb-5">
+              <div class="col-md-6 text-center">
+                <img src="doublecheeseburg.png" class="img-fluid menu-img" alt="Double Cheeseburger">
+              </div>
+              <div class="col-md-6">
+                <h3 class="menu-item-title">Double Cheeseburger</h3>
+                <p class="menu-desc">
+                  Two quarter pound burgers <br> make this a Court St. classic
+                </p>
+                <p class="menu-price">
+                  $8.95
+                </p>
+              </div>
+            </div>
+          
+            <!-- ITEM 2 -->
+            <div class="menu-item row align-items-center mb-5">
+              <div class="col-md-6 text-center">
+                <img src="baconburg.png" class="img-fluid menu-img" alt="Bacon Cheeseburger">
+              </div>
+              <div class="col-md-6">
+                <h3 class="menu-item-title">Bacon Cheeseburger</h3>
+                <p class="menu-desc">
+                  Always a Pub favorite!
+                </p>
+                <p class="menu-price">
+                  $6.50
+                </p>
+              </div>
+            </div>
+          
+            <!-- ITEM 3 -->
+            <div class="menu-item row align-items-center">
+              <div class="col-md-6 text-center">
+                <img src="mushburg.png" class="img-fluid menu-img" alt="Bacon 'N' Shrooms Burger">
+              </div>
+              <div class="col-md-6">
+                <h3 class="menu-item-title">Bacon 'N' Shrooms Burger</h3>
+                <p class="menu-desc">
+                  Choose Colby, Swiss, or American <br> on this quarter pound burger
+                </p>
+                <p class="menu-price">
+                  $7.50
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      <div class="footer-col">
+        <p class="footer-heading">Current Hours:</p>
+        <p class="footer-body">Kitchen: 11am – 7pm<br/>Bar: 11am – 2am</p>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-heading">Location:</p>
+        <p class="footer-body">39 North Court Street<br/>Athens, Ohio 45701<br/>740-592-2699</p>
+      </div>
+
+      <div class="footer-col footer-logo-col">
+        <img src="white_logo.png" alt="The Pub – Since 1975, Athens, Ohio" class="footer-logo" />
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
