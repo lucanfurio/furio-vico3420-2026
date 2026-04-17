@@ -63,44 +63,19 @@
       color: #f2ede6;
     }
 
-    .cart-icon-link {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 2rem;
-      height: 2rem;
-      border: 1.5px solid #0d0d0d;
-      border-radius: 50%;
-      margin-left: 0;
-      margin-right: 0.35rem;
-      padding: 4px;
-      transition: background 0.2s;
-      background: transparent;
-    }
-    .cart-icon-link:hover {
-      background: transparent !important;
-    }
-    .cart-icon {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      position: absolute;
-      transition: opacity 0.2s;
-    }
-    .cart-hover { opacity: 0; }
-    .cart-icon-link:hover .cart-default { opacity: 0; }
-    .cart-icon-link:hover .cart-hover { opacity: 1; }
+
 
     .hero {
       width: 100%;
-      display: block;
-      line-height: 0;
+      display: grid;
+  place-items: center;
+  padding-top: 30px;
     }
     .hero img {
-      width: 100%;
+      width: 30%;
       height: auto;
-      display: block;
+      display: grid;
+  place-items: center;
     }
 
     .header h1 {
@@ -112,11 +87,13 @@
       text-align: center;
       padding: 1.5rem 1rem 0;
       margin-top: -50px;
+      padding-top: 100px;
     }
 
     .paragraph {
       text-align: center;
       padding: 1.2rem 0 2rem;
+      padding-bottom: 50px;
     }
     .paragraph p {
       font-family: 'Barlow', sans-serif;
@@ -220,6 +197,7 @@
 </head>
 <body>
 
+  <!-- NAV -->
 
   <nav class="site-nav navbar navbar-expand-md">
     <div class="container-fluid px-0">
@@ -238,21 +216,18 @@
       <div class="collapse navbar-collapse" id="navMenu">
         <!-- Nav links -->
         <div class="nav-links d-flex flex-column flex-md-row align-items-start align-items-md-center mx-auto py-2 py-md-0">
-          <a href="#" class="active">Home</a>
-          <a href="#">Merch</a>
-          <a href="#">Menu</a>
-          <a href="#">About Us</a>
+          <a href="index.html">Home</a>
+          <a href="merch.html">Merch</a>
+          <a href="menu.html">Menu</a>
+          <a href="aboutus.html" class="active">About Us</a>
         </div>
         <!-- Social icons -->
         <div class="nav-social d-flex align-items-center mt-2 mt-md-0 pb-2 pb-md-0">
-          <a href="#" aria-label="Shop" class="cart-icon-link">
-            <img src="Shopping_Cart.png" alt="Shop" class="cart-icon cart-default" />
-            <img src="Shopping_Cart_Hover.png" alt="Shop" class="cart-icon cart-hover" />
-          </a>
-          <a href="#" aria-label="Email"><i class="bi bi-envelope"></i></a>
-          <a href="#" aria-label="X"><i class="bi bi-twitter-x"></i></a>
-          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="cart.html" aria-label="Cart"><i class="bi bi-cart3"></i></a>
+          <a href="mailto:thepubathens@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
+          <a href="https://x.com/The_Pub_Bar" aria-label="X"><i class="bi bi-twitter-x"></i></a>
+          <a href="https://www.facebook.com/ThePubAthensOhio/" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/thepubbar/" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
         </div>
       </div>
 
@@ -261,25 +236,17 @@
 
 
   <div class="hero">
-    <img src="Group_1456.png" alt="51 Years of Service" />
+    <img src="pub.gif" alt="Pub Friends" />
   </div>
 
   <div class="header">
-    <h1>The Oldest Bar in Athens Ohio</h1>
+    <h1>About Us</h1>
   </div>
 
   <div class="paragraph">
-    <p>Come have a meal and a drink at a bar full of history. The Pub is Athens, Ohio's longest standing bar. First opened up in 1974, The Pub has stood as a locally owned fixture of court street. We are known for our burgers, aquariums, and beer cheese soup, and our house shot is Sambuca.</p>
+    <p>The Pub has been a fixture of the Athens, Ohio community for over 51 years of service. It rests on Court St. Next to The J Bar and Pawpurr’s, The Pub serves as a popular, cozy, and often packed spot for both Ohio University students and locals, transitioning from a daytime lunch spot to a lively, crowded, high-energy party scene at night.<br> <br> Give us a visit, you won't regret it!</p>
   </div>
 
-  <!-- Image + Quote row -->
-  <div class="quote-section">
-    <img class="quote-img" src="Group_1457.png" alt="Delicious drinks!" />
-    <div class="quote-text">
-      <p>"Since 1974, The Pub Has Been Serving Good Times <br> And Great Burgers In Downtown Athens"</p>
-      <p class="quote-attr">– Miles Layton, <span>Athens News</span></p>
-    </div>
-  </div>
 
   <!-- Footer -->
   <footer class="site-footer">

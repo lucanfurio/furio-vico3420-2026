@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Pub – Checkout</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Josefin+Sans:wght@100;300;400&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Barlow', sans-serif; overflow-x: hidden; background: #fff; }
+
+    /* ── NAV ── */
+    .site-nav { background: #ffffff; border-bottom: 2px solid #0d0d0d; padding: 0.4rem 2rem; }
+    .nav-logo img { height: 80px; width: auto; display: block; }
+    .nav-links a {
+      font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 1.1rem;
+      letter-spacing: 0.15em; text-transform: uppercase; color: #0d0d0d;
+      text-decoration: none; padding: 0 1rem;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #000000; font-weight: 700; }
+    .nav-social a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 2rem; height: 2rem; border: 1.5px solid #0d0d0d; border-radius: 50%;
+      color: #0d0d0d; font-size: 0.9rem; text-decoration: none;
+      margin-left: 0.35rem; transition: background 0.2s, color 0.2s;
+    }
+    .nav-social a:hover { background: #0d0d0d; color: #f2ede6; }
+
+    /* ── CHECKOUT LAYOUT ── */
+    .checkout-page {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 3rem;
+    }
+
+    .section-heading {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #0d0d0d;
+      margin-bottom: 1.2rem;
+      margin-top: 2rem;
+    }
+    .section-heading:first-of-type { margin-top: 0; }
+
+    /* Form inputs */
+    .form-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.85rem;
+    }
+    .form-row.single { display: block; }
+
+    .pub-input {
+      width: 100%;
+      border: 1.5px solid #0d0d0d;
+      border-radius: 0;
+      padding: 0.65rem 0.9rem;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: #0d0d0d;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .pub-input:focus { border-color: #555; }
+    .pub-input::placeholder { color: #999; }
+
+    .input-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: #555;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    .input-wrap { flex: 1; }
+
+    /* Checkbox */
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0.8rem 0 0.5rem;
+    }
+    .checkbox-row input[type="checkbox"] {
+      width: 1rem;
+      height: 1rem;
+      border: 1.5px solid #0d0d0d;
+      border-radius: 0;
+      accent-color: #0d0d0d;
+      cursor: pointer;
+    }
+    .checkbox-row label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: #0d0d0d;
+      cursor: pointer;
+    }
+
+    /* Shipping method */
+    .shipping-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      border: 1.5px solid #0d0d0d;
+      padding: 0.9rem 1rem;
+      margin-bottom: 0.6rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .shipping-option:hover { background: #f8f8f8; }
+    .shipping-option input[type="radio"] {
+      margin-top: 0.15rem;
+      accent-color: #0d0d0d;
+      flex-shrink: 0;
+    }
+    .shipping-option-content { flex: 1; }
+    .shipping-price {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #0d0d0d;
+    }
+    .shipping-desc {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 0.88rem;
+      color: #555;
+      margin-top: 0.1rem;
+    }
+
+    /* Credit card icons */
+    .card-icons {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-left: 0.8rem;
+    }
+    .card-icon {
+      height: 22px;
+      width: auto;
+      border-radius: 3px;
+    }
+    .pay-heading-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.2rem;
+      margin-top: 2rem;
+    }
+    .pay-heading-row .section-heading {
+      margin: 0;
+    }
+
+    /* Order review */
+    .order-review-item {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .order-review-item:first-of-type { border-top: 1px solid #ddd; }
+    .order-review-img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    @font-face { font-family: 'Blackletter'; src: url('jblack.ttf') format('truetype'); }
+    .order-item-name {
+      font-family: 'Blackletter', serif;
+      font-size: 1.1rem;
+      flex: 1;
+      line-height: 1.3;
+    }
+    .order-item-price {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      min-width: 60px;
+      text-align: right;
+    }
+
+    /* Summary */
+    .summary-block {
+      margin-top: 2rem;
+      padding-top: 1rem;
+    }
+    .summary-heading {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .summary-line {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 0.95rem;
+      color: #333;
+      margin-bottom: 0.2rem;
+    }
+    .total-heading {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    .total-amount {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Pay button */
+    .pay-btn {
+      display: block;
+      width: 100%;
+      max-width: 380px;
+      margin: 1.5rem auto 0;
+      padding: 1rem;
+      background: #ffffff;
+      border: 2px solid #0d0d0d;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      text-align: center;
+    }
+    .pay-btn:hover { background: #0d0d0d; color: #fff; }
+
+    .error-msg {
+      color: #c00;
+      font-size: 0.85rem;
+      font-family: 'Barlow', sans-serif;
+      margin-top: 0.4rem;
+      display: none;
+    }
+
+    /* ── FOOTER ── */
+    .site-footer { width: 100%; background-image: url('footer.png'); background-size: cover; background-position: center; padding: 3rem; margin-top: 3rem; }
+    .footer-inner { display: flex; align-items: flex-start; justify-content: flex-start; gap: 5rem; }
+    .footer-heading { font-family: 'Barlow', sans-serif; font-weight: 350; font-size: 1.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: #ffffff; margin-bottom: 0.6rem; }
+    .footer-body { font-family: 'Barlow', sans-serif; font-weight: 300; font-size: 0.95rem; line-height: 1.8; color: #cccccc; }
+    .footer-logo-col { text-align: right; margin-left: auto; }
+    .footer-logo { height: 120px; width: auto; margin-top: 20px; margin-right: 20px; }
+
+    @media (max-width: 767px) {
+      .form-row { flex-direction: column; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-logo-col { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav navbar navbar-expand-md">
+    <div class="container-fluid px-0">
+      <a href="index.html" class="nav-logo">
+        <img src="Asset_1_4x_1.png" alt="The Pub – Since 1975, Athens, Ohio" />
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navCheckout" aria-controls="navCheckout" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navCheckout">
+        <div class="nav-links d-flex flex-column flex-md-row align-items-start align-items-md-center mx-auto py-2 py-md-0">
+          <a href="index.html">Home</a>
+          <a href="merch.html">Merch</a>
+          <a href="menu.html">Menu</a>
+          <a href="aboutus.html">About Us</a>
+        </div>
+        <div class="nav-social d-flex align-items-center mt-2 mt-md-0 pb-2 pb-md-0">
+          <a href="cart.html" aria-label="Cart"><i class="bi bi-cart3"></i></a>
+          <a href="mailto:thepubathens@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
+          <a href="https://x.com/The_Pub_Bar" aria-label="X"><i class="bi bi-twitter-x"></i></a>
+          <a href="https://www.facebook.com/ThePubAthensOhio/" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/thepubbar/" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="checkout-page">
+
+    <!-- BILLING ADDRESS -->
+    <p class="section-heading">Billing Address</p>
+
+    <div class="form-row">
+      <div class="input-wrap">
+        <input class="pub-input" id="firstName" type="text" placeholder="Enter Your First Name..." autocomplete="given-name" />
+      </div>
+      <div class="input-wrap">
+        <input class="pub-input" id="lastName" type="text" placeholder="Enter Your Last Name..." autocomplete="family-name" />
+      </div>
+    </div>
+
+    <div class="form-row single" style="margin-bottom:0.85rem;">
+      <input class="pub-input" id="email" type="email" placeholder="Email Address" autocomplete="email" />
+    </div>
+
+    <div class="form-row single" style="margin-bottom:0.85rem;">
+      <input class="pub-input" id="street" type="text" placeholder="Street Address" autocomplete="street-address" />
+    </div>
+
+    <div class="form-row">
+      <div class="input-wrap">
+        <label class="input-label">State</label>
+        <input class="pub-input" id="state" type="text" placeholder="Ohio" autocomplete="address-level1" />
+      </div>
+      <div class="input-wrap">
+        <label class="input-label">City</label>
+        <input class="pub-input" id="city" type="text" placeholder="Athens" autocomplete="address-level2" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="input-wrap">
+        <label class="input-label">Zip Code</label>
+        <input class="pub-input" id="zip" type="text" placeholder="45701" autocomplete="postal-code" />
+      </div>
+      <div class="input-wrap">
+        <label class="input-label">Phone</label>
+        <input class="pub-input" id="phone" type="tel" placeholder="+1 234 567 89" autocomplete="tel" />
+      </div>
+    </div>
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="sameAddress" checked />
+      <label for="sameAddress">My billing and shipping address are the same</label>
+    </div>
+
+    <!-- SHIPPING METHOD -->
+    <p class="section-heading">Shipping Method</p>
+
+    <label class="shipping-option">
+      <input type="radio" name="shipping" value="10" checked />
+      <div class="shipping-option-content">
+        <div class="shipping-price">$10.00 &nbsp; USPS 1st Class With Tracking</div>
+        <div class="shipping-desc">(5 – 13 days) COVID19 Delay</div>
+      </div>
+    </label>
+
+    <label class="shipping-option">
+      <input type="radio" name="shipping" value="15" />
+      <div class="shipping-option-content">
+        <div class="shipping-price">$15.00 &nbsp; USPS PRIORITY With Tracking</div>
+        <div class="shipping-desc">(5 – 10 days) COVID19 Delay</div>
+      </div>
+    </label>
+
+    <!-- PAY WITH CREDIT CARD -->
+    <div class="pay-heading-row">
+      <p class="section-heading">Pay With Credit Card</p>
+      <div class="card-icons">
+        <!-- SVG card brand icons -->
+        <svg class="card-icon" viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" width="38" height="24"><rect width="48" height="30" rx="4" fill="#1A1F71"/><text x="5" y="21" font-family="Arial" font-weight="900" font-size="14" fill="#F7B600">VISA</text></svg>
+        <svg class="card-icon" viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" width="38" height="24"><rect width="48" height="30" rx="4" fill="#fff" stroke="#ddd"/><circle cx="18" cy="15" r="9" fill="#EB001B"/><circle cx="30" cy="15" r="9" fill="#F79E1B"/><path d="M24 7.8a9 9 0 0 1 0 14.4A9 9 0 0 1 24 7.8z" fill="#FF5F00"/></svg>
+        <svg class="card-icon" viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" width="38" height="24"><rect width="48" height="30" rx="4" fill="#003087"/><text x="4" y="21" font-family="Arial" font-weight="700" font-size="10" fill="#009CDE">DISC</text><text x="22" y="21" font-family="Arial" font-weight="700" font-size="10" fill="#FF6600">OVER</text></svg>
+        <svg class="card-icon" viewBox="0 0 48 30" xmlns="http://www.w3.org/2000/svg" width="38" height="24"><rect width="48" height="30" rx="4" fill="#EB001B"/><circle cx="18" cy="15" r="9" fill="#EB001B" stroke="#fff" stroke-width="1.5"/><circle cx="30" cy="15" r="9" fill="#EB001B" stroke="#fff" stroke-width="1.5"/><path d="M24 8a9 9 0 0 1 0 14A9 9 0 0 1 24 8z" fill="#fff" opacity=".15"/></svg>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="input-wrap">
+        <label class="input-label">Card Number</label>
+        <input class="pub-input" id="cardNumber" type="text" placeholder="1234 5678 9101 3456" maxlength="19" autocomplete="cc-number" />
+      </div>
+      <div class="input-wrap">
+        <label class="input-label">Expiration Date</label>
+        <input class="pub-input" id="cardExpiry" type="text" placeholder="MM/YY" maxlength="5" autocomplete="cc-exp" />
+      </div>
+    </div>
+
+    <div class="form-row single" style="margin-bottom:0.85rem; max-width: 220px;">
+      <label class="input-label">Card Security Code</label>
+      <input class="pub-input" id="cardCvc" type="text" placeholder="***" maxlength="4" autocomplete="cc-csc" />
+    </div>
+
+    <!-- ORDER REVIEW -->
+    <p class="section-heading" style="margin-top: 2.5rem;">Order Review</p>
+    <div id="order-review-items"></div>
+
+    <!-- SUMMARY -->
+    <div class="summary-block">
+      <div class="summary-heading">Summary</div>
+      <p class="summary-line">Subtotal: <span id="co-subtotal">$0.00</span></p>
+      <p class="summary-line">Shipping: <span id="co-shipping">$10.00</span></p>
+      <div class="total-heading">Total</div>
+      <div class="total-amount" id="co-total">USD $0.00</div>
+    </div>
+
+    <div id="form-error" class="error-msg" style="text-align:center; margin-top:1rem;">Please fill in all required fields.</div>
+    <button class="pay-btn" id="pay-btn" onclick="submitOrder()">Pay <span id="pay-amount"></span></button>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <p class="footer-heading">Current Hours:</p>
+        <p class="footer-body">Kitchen: 11am – 7pm<br/>Bar: 11am – 2am</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">Location:</p>
+        <p class="footer-body">39 North Court Street<br/>Athens, Ohio 45701<br/>740-592-2699</p>
+      </div>
+      <div class="footer-col footer-logo-col">
+        <img src="white_logo.png" alt="The Pub – Since 1975, Athens, Ohio" class="footer-logo" />
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const SHIPPING_DEFAULT = 10;
+
+    // ── Load saved billing info ──
+    const saved = JSON.parse(localStorage.getItem('pubBillingInfo') || '{}');
+    const fields = ['firstName','lastName','email','street','state','city','zip','phone'];
+    fields.forEach(id => {
+      if (saved[id]) document.getElementById(id).value = saved[id];
+    });
+
+    // ── Render order review from cart ──
+    function getCart() {
+      return JSON.parse(localStorage.getItem('pubCart') || '[]');
+    }
+
+    function getShipping() {
+      const selected = document.querySelector('input[name="shipping"]:checked');
+      return selected ? parseFloat(selected.value) : SHIPPING_DEFAULT;
+    }
+
+    function updateTotals() {
+      const cart = getCart();
+      const shipping = getShipping();
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const total = subtotal + shipping;
+
+      document.getElementById('co-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+      document.getElementById('co-shipping').textContent = `$${shipping.toFixed(2)}`;
+      document.getElementById('co-total').textContent = `USD $${total.toFixed(2)}`;
+      document.getElementById('pay-amount').textContent = `$${total.toFixed(2)}`;
+    }
+
+    function renderOrderReview() {
+      const cart = getCart();
+      const container = document.getElementById('order-review-items');
+      if (cart.length === 0) {
+        container.innerHTML = '<p style="font-family:Barlow,sans-serif;color:#999;font-size:0.95rem;">Your cart is empty. <a href="merch.html">Browse Merch</a></p>';
+        return;
+      }
+      container.innerHTML = cart.map(item => `
+        <div class="order-review-item">
+          <img class="order-review-img" src="${item.img}" alt="${item.name}" onerror="this.style.display='none'">
+          <div class="order-item-name">${item.name}<br><span style="font-family:'Barlow',sans-serif;font-size:0.8rem;font-weight:300;color:#666;">Qty: ${item.qty}</span></div>
+          <div class="order-item-price">$${(item.price * item.qty).toFixed(2)}</div>
+        </div>`).join('');
+      updateTotals();
+    }
+
+    // Update totals when shipping changes
+    document.querySelectorAll('input[name="shipping"]').forEach(r => {
+      r.addEventListener('change', updateTotals);
+    });
+
+    // Format card number with spaces
+    document.getElementById('cardNumber').addEventListener('input', function() {
+      let v = this.value.replace(/\D/g, '').substring(0, 16);
+      this.value = v.replace(/(.{4})/g, '$1 ').trim();
+    });
+
+    // Format expiry MM/YY
+    document.getElementById('cardExpiry').addEventListener('input', function() {
+      let v = this.value.replace(/\D/g, '').substring(0, 4);
+      if (v.length >= 3) v = v.slice(0,2) + '/' + v.slice(2);
+      this.value = v;
+    });
+
+    function saveBillingInfo() {
+      const info = {};
+      fields.forEach(id => { info[id] = document.getElementById(id).value.trim(); });
+      info.shippingMethod = getShipping();
+      localStorage.setItem('pubBillingInfo', JSON.stringify(info));
+    }
+
+    function validateForm() {
+      const required = ['firstName','lastName','email','street','city','state','zip','cardNumber','cardExpiry','cardCvc'];
+      return required.every(id => document.getElementById(id).value.trim() !== '');
+    }
+
+    function submitOrder() {
+      if (!validateForm()) {
+        const err = document.getElementById('form-error');
+        err.style.display = 'block';
+        window.scrollTo({ top: err.offsetTop - 20, behavior: 'smooth' });
+        return;
+      }
+      saveBillingInfo();
+      // Store order snapshot then clear cart
+      const cart = getCart();
+      const shipping = getShipping();
+      const subtotal = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+      localStorage.setItem('pubLastOrder', JSON.stringify({ cart, subtotal, shipping, total: subtotal + shipping }));
+      localStorage.removeItem('pubCart');
+      window.location.href = 'order-confirmed.html';
+    }
+
+    renderOrderReview();
+  </script>
+</body>
+</html>
