@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Using Transition</title>
+
+    <style>
+        #square-1 {
+            background-color: blueviolet;
+            width: 50px;
+            height: 50px;
+            transition: left 1s;
+        }
+
+        .pos1 {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+        }
+
+        .pos2 {
+            position: absolute;
+            top: 30px;
+            left: 230px;
+        }
+
+        button {
+            background-color: aquamarine;
+            margin: 0 auto;
+            padding: 15px;
+            transition: background-color 1s;
+        }
+
+        button:hover {
+            background-color: blanchedalmond;
+        }
+    </style>
+</head>
+<body>
+
+    <button>This button changes color!</button>
+<br>
+    <div id="square-1" class="pos1" onclick="replaceClass()"></div>
+
+    <script>
+        function replaceClass() {
+            document.getElementById("square-1").classList.remove("pos1");
+            document.getElementById("square-1").classList.add("pos2");
+        }
+    </script>
+    
+</body>
+</html>

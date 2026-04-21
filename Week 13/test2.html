@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translate, Rotate, and Scale Example</title>
+
+    <style>
+        #transform-example {
+            background-color: red;
+            margin: 50px;
+            width: 150px;
+            height: 150px;
+            transform: translateX(30px);
+            transition: transform 1s;
+        }
+
+        #transform-example:hover {
+            transform: translateX(50px);
+        }
+
+        #rotate-example {
+            background-color: green;
+            margin: 50px auto;
+            width: 150px;
+            height: 150px;
+            transform: rotate(20deg);
+            transition: transform 1s;
+        }
+
+        #rotate-example:hover {
+            transform: rotate(5deg);
+        }
+
+        #scale-example {
+            background-color: blue;
+            margin: 75px auto;
+            width: 150px;
+            height: 150px;
+            transform: scale(1.1);
+            transition: transform 1s;
+        }
+
+        #scale-example:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="transform-example"></div>
+
+    <div id="rotate-example"></div>
+
+    <div id="scale-example"></div>
+</body>
+</html>

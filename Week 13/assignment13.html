@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Trolls</title>
+
+    <style>
+        .img-box {
+            margin: 50px;
+            width: 150px;
+            height: 150px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: transform 1s;
+        }
+
+        #transform-example {
+            background-image: url("eviltroll.png"); 
+            transform: translateX(30px);
+        }
+
+        #transform-example:hover {
+            transform: translateX(50px);
+        }
+
+        #rotate-example {
+            background-image: url("sadtroll.png");
+            margin: 50px auto;
+            transform: rotate(20deg);
+        }
+
+        #rotate-example:hover {
+            transform: rotate(5deg);
+        }
+
+        #scale-example {
+            background-image: url("troll.png");
+            margin: 75px auto;
+            transform: scale(1.1);
+        }
+
+        #scale-example:hover {
+            transform: scale(1.2);
+        }
+
+        #square-1 {
+    width: 100px;
+    height: 100px;
+    background-image: url("eviltroll.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: left 1s;
+}
+
+        .pos1 {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+        }
+
+        .pos2 {
+            position: absolute;
+            top: 30px;
+            left: 230px;
+        }
+
+        button {
+            background-color: aquamarine;
+            margin: 0 auto;
+            padding: 15px;
+            transition: background-color 1s;
+        }
+
+        button:hover {
+            background-color: blanchedalmond;
+        }
+    </style>
+</head>
+<body>
+    <div id="transform-example" class="img-box"></div>
+
+    <div id="rotate-example" class="img-box"></div>
+
+    <div id="scale-example" class="img-box"></div>
+
+    <div id="square-1" class="pos1" onclick="replaceClass()"></div>
+
+    <script>
+        function replaceClass() {
+            document.getElementById("square-1").classList.remove("pos1");
+            document.getElementById("square-1").classList.add("pos2");
+        }
+    </script>
+    
+</body>
+</html>
