@@ -17,7 +17,12 @@
       box-sizing: border-box; 
     }
     
-    body { 
+    html { height: 100%; }
+
+    body {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column; 
     font-family: 'Barlow', sans-serif; 
     overflow-x: hidden; }
 
@@ -78,6 +83,9 @@
     .accordion-item:first-of-type { 
       border-top: 2px solid #0d0d0d;
      }
+    .accordion-item:last-of-type {
+      border-bottom: 2px solid #0d0d0d !important;
+    }
 
     .accordion-button {
       font-family: 'Barlow', sans-serif;
@@ -182,7 +190,8 @@
       color: #ffffff; 
     }
 
-    .site-footer { 
+    .site-footer {
+      margin-top: auto; 
       width: 100%;
       background-image: url('footer.png');
       background-size: cover;
